@@ -40,4 +40,5 @@ echo "$(date): Archived $MONTH_LABEL logs → $ARCHIVE_FILE" >> "$DOCS_DIR/organ
 cd "$DOCS_DIR"
 git add -A
 git commit -m "archive: $MONTH_LABEL task logs"
-git push origin main
+TOKEN=$(grep 'oauth_token:' /home/gcpuser/.config/gh/hosts.yml | head -1 | awk '{print $2}')
+git push "https://devesh-agent:${TOKEN}@github.com/devesh-agent/task-logs.git" main
